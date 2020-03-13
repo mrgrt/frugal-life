@@ -56,7 +56,7 @@ export default class Posts extends React.Component{
         return (
             <div className="day">
                 <div className="summary">
-                    <h3 className="date"><i className="far fa-clock"></i>{Moment(post.date).format('MMMM Mo, GGGG')}</h3>
+                    <h3 className="date"><i className="far fa-clock"></i>{Moment(post.date).format('MMMM Do, GGGG')}</h3>
                         <div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
                 </div>
                 <div className="spend">

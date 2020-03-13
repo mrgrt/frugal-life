@@ -70,14 +70,27 @@ export default class Posts extends React.Component{
     }
 
 
+    renderImage(url,caption){
+        return (
+            <figure>
+                <img src={url} />
+                <figcaption>{caption}</figcaption>
+            </figure>
+        );
+    }
+
+
     renderBlogPost(post){
         return (
             <li className="day day--blog">
                 <div className="summary">
-                <h3 className="date"><span dangerouslySetInnerHTML={{__html: post.title.rendered}}></span></h3>
-                {post.acf.flexible_content.map(flexible_content => 
-                    <FlexibleContent content={flexible_content} />
-                )}
+                    <h3 className="date"><span dangerouslySetInnerHTML={{__html: post.title.rendered}}></span></h3>
+                    {post.acf.flexible_content.map(flexible_content => 
+                        <FlexibleContent content={flexible_content} />
+                    )}
+                </div>
+                <div>
+                    {this.renderImage(post.featured_image_url, post.featured_image_caption)}
                 </div>
             </li>  
         );

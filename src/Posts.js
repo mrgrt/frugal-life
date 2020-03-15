@@ -24,15 +24,15 @@ export default class Posts extends React.Component{
         let fetchUrl = "https://frugal.grahamethomson.com/wp-json/wp/v2/posts?per_page=2&page=" + page;
         axios.get(fetchUrl)
         .then(res => {
-                const posts = [...this.state.posts];
-                let updatedPosts = posts.concat(res.data);
-                let currentPage = this.state.currentPage + 1;
-                this.setState({
-                    posts: updatedPosts,
-                    currentPage: currentPage,
-                    isLoading: false,
-                    totalPages: res.headers["x-wp-totalpages"]
-                });
+            const posts = [...this.state.posts];
+            let updatedPosts = posts.concat(res.data);
+            let currentPage = this.state.currentPage + 1;
+            this.setState({
+                posts: updatedPosts,
+                currentPage: currentPage,
+                isLoading: false,
+                totalPages: res.headers["x-wp-totalpages"]
+            });
         })
     }
 
@@ -52,6 +52,11 @@ export default class Posts extends React.Component{
         }
     }
 
+
+    // post content
+    // acf total
+    //  acf breakdown
+
     renderDefaultPost(post){
         return (
             <div className="day">
@@ -60,7 +65,7 @@ export default class Posts extends React.Component{
                         <div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
                 </div>
                 <div className="spend">
-                    <span className="spend__total">Total: £{post.acf.total}</span>
+                    <span className="spend__total">Total: £{post.total}</span>
                     <ul className="spend__breakdown">
                         {this.renderBreakDown(post.acf.breakdown)}
                     </ul>
